@@ -6,7 +6,7 @@ interface GameContextType{
     winner: string | null,
     tie: boolean,
     resetGame: () => void,
-    moveOnGame: (index: number) => void
+    moveOnGame: (index: number) => void,
 }
 
 interface GameContextProviderProps{
@@ -59,9 +59,9 @@ export const GameContextProvider = ({children}:GameContextProviderProps) =>{
         setXIsNext(true)
     }
 
-
     const winner = defineWinner(squares)
     const tie = checkTie(squares)
+
     return(
         <GameContext.Provider value={{xIsNext, moveOnGame, squares, resetGame, tie, winner}}>
             {children}
