@@ -1,21 +1,25 @@
 import { ArrowCounterClockwise } from "phosphor-react"
 import {TurnContainer, OptionPlayer, TurnPlayer, ResetGame} from "./styles"
+import { GameContext } from "../../contexts/GameContext"
+import { useContext } from "react"
+// interface GameTurnProps{
+//     winner: string | null,
+//     xIsNext: boolean,
+//     checkTie: boolean,
+//     resetGame: () => void
+// }
 
-interface GameTurnProps{
-    winner: string | null,
-    xIsNext: boolean,
-    checkTie: boolean,
-    resetGame: () => void
-}
+export const GameTurn = () =>{
 
-export const GameTurn = ({winner, xIsNext, checkTie, resetGame}:GameTurnProps) =>{
+    const {winner, tie, xIsNext, squares, resetGame} = useContext(GameContext)
+
     return(
         <TurnContainer>
             <OptionPlayer></OptionPlayer>
             <TurnPlayer>
-                {(!winner && !checkTie) && "Turn " + (xIsNext ? "X" : "O")}
+                {(!winner && !tie) && "Turn " + (xIsNext ? "X" : "O")}
                 {winner && "Winner "+winner}
-                {checkTie && "Tie"}
+                {tie && "Tie"}
             </TurnPlayer>
             <ResetGame onClick={resetGame} type="button">
                 <ArrowCounterClockwise size={24} />

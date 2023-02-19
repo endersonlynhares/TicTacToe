@@ -21,6 +21,7 @@ interface TimesWinnerProps{
 
 export const TimesWinner = styled.div<TimesWinnerProps>`
     display: flex;
+    
     justify-content: center;
     aligh-items: center;
     flex-direction: column;
@@ -29,6 +30,7 @@ export const TimesWinner = styled.div<TimesWinnerProps>`
     background: ${props => props.theme[COLOR_INFO_WIN[props.winnerValue]]};
     border-radius: 10px;
     padding: 10px;
+    height: 80px;
     text-align: center;
     text-transform: uppercase;
 

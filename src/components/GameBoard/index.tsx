@@ -1,29 +1,26 @@
 import { BoardContainer } from "./styles"
 import { Square } from "./Square"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { GameContext } from "../../contexts/GameContext"
 
 
-interface GameBoardProps{
-    squares: Array<string | null>,
-    winner: string | null,
-    xIsNext: boolean,
-    setSquares: (e: Array<string | null>) => void,
-    setXIsNext: (e: boolean) => void,
-}
+// interface GameBoardProps{
+//     squares: Array<string | null>,
+//     winner: string | null,
+//     xIsNext: boolean,
+//     setSquares: (e: Array<string | null>) => void,
+//     setXIsNext: (e: boolean) => void,
+// }
 
-export const GameBoard = ({squares, setSquares, xIsNext, setXIsNext, winner}:GameBoardProps) => {
+export const GameBoard = () => {
+
+    const {squares, moveOnGame, winner} = useContext(GameContext)
+
     const handleClick = (index: number) => {
         if (squares[index] || winner) {
             return
         }
-        const nextSquare = squares.slice()
-        if (xIsNext) {
-            nextSquare[index] = "X"
-        } else {
-            nextSquare[index] = "O"
-        }
-        setSquares(nextSquare)
-        setXIsNext(!xIsNext)
+        moveOnGame(index)
     }
 
     return (
