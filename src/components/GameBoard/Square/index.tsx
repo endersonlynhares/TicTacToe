@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { SquareButton, TurnPlayer } from "./styles"
 
 interface SquareProps{
-    value: string;
+    value: string | null;
     onSquareClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 

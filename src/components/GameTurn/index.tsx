@@ -1,12 +1,23 @@
 import { ArrowCounterClockwise } from "phosphor-react"
 import {TurnContainer, OptionPlayer, TurnPlayer, ResetGame} from "./styles"
 
-export const GameTurn = () =>{
+interface GameTurnProps{
+    winner: string | null,
+    xIsNext: boolean,
+    checkTie: boolean,
+    resetGame: () => void
+}
+
+export const GameTurn = ({winner, xIsNext, checkTie, resetGame}:GameTurnProps) =>{
     return(
         <TurnContainer>
             <OptionPlayer></OptionPlayer>
-            <TurnPlayer>Turn X</TurnPlayer>
-            <ResetGame type="button">
+            <TurnPlayer>
+                {(!winner && !checkTie) && "Turn " + (xIsNext ? "X" : "O")}
+                {winner && "Winner "+winner}
+                {checkTie && "Tie"}
+            </TurnPlayer>
+            <ResetGame onClick={resetGame} type="button">
                 <ArrowCounterClockwise size={24} />
             </ResetGame>
         </TurnContainer>

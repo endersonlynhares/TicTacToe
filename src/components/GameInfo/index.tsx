@@ -1,19 +1,27 @@
 import {InfoContainer, TimesWinner} from "./styles"
 
-export const GameInfo = () =>{
+interface GameInfoProps{
+    infoGame: {
+        playerOne: number,
+        ties: number,
+        playerTwo: number
+    }
+}
+
+export const GameInfo = ({infoGame:{playerOne, ties, playerTwo}}:GameInfoProps) =>{
     return(
         <InfoContainer>
             <TimesWinner winnerValue="playerOne">
-                <div>X (PlayerOne)</div>
-                <div>0</div>
+                <div>X (Player1)</div>
+                <div>{playerOne}</div>
             </TimesWinner>
             <TimesWinner winnerValue="ties">
                 <div>Ties</div>
-                <div>0</div>
+                <div>{ties}</div>
             </TimesWinner>
             <TimesWinner winnerValue="playerTwo">
-                <div>O (PlayerOne)</div>
-                <div>0</div>
+                <div>O (Player2)</div>
+                <div>{playerTwo}</div>
             </TimesWinner>
         </InfoContainer>
     )
